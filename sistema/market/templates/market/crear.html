@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block titulo %} Guardar Libros {% endblock%}
+
+{% block contenido %}
+
+
+{% comment %} bs5-head-foot {% endcomment %}
+<div class="card"> 
+    <div class="card-header">Agregar Libro</div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Libro</h4>
+        {% include "market/form.html" %}        
+    </div>
+    <div class="card-footer text-muted">Footer</div>
+</div>
+
+
+{% endblock%}

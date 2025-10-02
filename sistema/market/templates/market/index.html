@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block titulo %} {% endblock %}
+
+{% block contenido%} 
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <a
+            name=""
+            id=""
+            class="btn btn-success"
+            href="{% url 'crear' %}"
+            role="button"
+            >Agregar Libro</a
+        >
+        
+
+
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Libros disponibles</h4>
+        <div
+    class="table-responsive"
+>
+    <table
+        class="table table-primary"
+    >
+        <thead>
+            <tr>
+                <th scope="col">ID </th>
+                <th scope="col">Titulo </th>
+                <th scope="col">Autor </th>
+                <th scope="col">Materia </th>
+                <th scope="col">Descripción </th>
+                <th scope="col">Precio </th>
+                <th scope="col">Stock </th>
+                <th scope="col">Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for market in market %}
+            <tr class="">
+                <td> {{market.id}} </td>
+                <td> {{market.titulo}} </td>
+                <td> {{market.autor}} </td>
+                <td> {{market.materia}} </td>
+                <td> {{market.descripcion}} </td>
+                <td> {{market.precio}} </td>
+                <td> {{market.stock}} </td>
+                <td> <a
+                    name=""
+                    id=""
+                    class="btn btn-danger"
+                    href="{% url 'eliminar' market.id %}"
+                    role="button"
+                    >Eliminar</a
+                >
+                </td>
+
+            </tr>
+            {%  endfor %} 
+            {% comment %} <tr class="">
+                <td scope="row">El Capital</td>
+                <td>Karl Marx</td>
+                <td>Filosofía económica</td>
+            </tr> {% endcomment %}
+        </tbody>
+    </table>
+</div>    
+    </div>
+    <div class="card-footer text-muted">Footer</div>
+</div>
+
+{% endblock %}

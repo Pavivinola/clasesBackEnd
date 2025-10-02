@@ -1,0 +1,22 @@
+<form enctype='multipart/form-data' method='post'>
+
+{% comment %} bs5-form-input {% endcomment %}
+    {% csrf_token %}
+    {% for campo in formulario %}
+    <div class="mb-3">
+        <label for="" class="form-label">{{campo.label}}</label> 
+        <input
+            type="{{ campo.field.widget.input_type }}"
+            class="form-control"
+            name="{{campo.name}}"
+            id=""
+            aria-describedby="helpId"
+            placeholder="Nombre"
+        />
+        
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+
+</form>
