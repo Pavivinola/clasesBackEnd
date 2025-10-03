@@ -4,6 +4,14 @@
 
 {% block contenido%} 
 
+{% comment %} El bloque de abajo es para mostrar mensajes a los usuarios {% endcomment %}
+{% if messages %} 
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
 
 
 
@@ -57,17 +65,21 @@
                     class="btn btn-danger"
                     href="{% url 'eliminar' market.id %}"
                     role="button"
-                    >Eliminar</a
-                >
+                    >Eliminar</a>
+                    <a
+                        name=""
+                        id=""
+                        class="btn btn-primary"
+                        href="{% url 'prestar' market.id %}"
+                        role="button"
+                        >Prestar</a
+                    >
+                    
                 </td>
 
             </tr>
             {%  endfor %} 
-            {% comment %} <tr class="">
-                <td scope="row">El Capital</td>
-                <td>Karl Marx</td>
-                <td>Filosofía económica</td>
-            </tr> {% endcomment %}
+     
         </tbody>
     </table>
 </div>    
