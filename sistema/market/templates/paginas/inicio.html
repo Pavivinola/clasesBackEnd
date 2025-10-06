@@ -1,21 +1,73 @@
 {% extends "base.html" %}
 
-{% block titulo %} INICIO {% endblock%}
+{% block titulo %} Inicio {% endblock %}
 
 {% block contenido %}
-<div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Bienvenidos a la BiblioPavini</h1>
-        <p class="col-md-8 fs-4">
-            Using a series of utilities, you can create this jumbotron, just
-            like the one in previous versions of Bootstrap. Check out the
-            examples below for how you can remix and restyle it to your liking.
-        </p>
-        <button class="btn btn-primary btn-lg" type="button">
-            Example button
-        </button>
-    </div>
+
+<!-- Sección de bienvenida -->
+<div class="p-5 mb-4 bg-success bg-gradient text-white rounded-4 shadow-lg">
+  <div class="container-fluid py-5">
+    <h1 class="display-4 fw-bold mb-3">
+      <i class="bi bi-bookmark-heart-fill me-2"></i> Bienvenidos a <span class="text-warning">BiblioPavini</span>
+    </h1>
+    <p class="fs-5 col-md-10">
+      Donde los libros cobran vida y los lectores son aventureros.  
+      Aquí puedes descubrir historias que inspiran, aprender algo nuevo cada día  
+      y, por supuesto, ¡prestar un libro antes de que te lo gane el gato de la biblioteca 🐾📚!
+    </p>
+    <a href="{% url 'market' %}" class="btn btn-light btn-lg mt-3 fw-semibold shadow-sm">
+      <i class="bi bi-journal-plus"></i> Ver Catálogo de Libros
+    </a>
+  </div>
 </div>
 
+<!-- Sección destacada con tarjetas -->
+<div class="container mt-5">
+  <div class="row text-center g-4">
 
-{% endblock%}
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body">
+          <i class="bi bi-magic fs-1 text-success"></i>
+          <h5 class="card-title mt-3 fw-bold">Libros con historia</h5>
+          <p class="card-text text-muted">
+            Desde los clásicos que sobrevivieron al polvo del tiempo  
+            hasta las nuevas joyas literarias, ¡aquí los encontrarás todos!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body">
+          <i class="bi bi-chat-dots fs-1 text-success"></i>
+          <h5 class="card-title mt-3 fw-bold">Comparte y comenta</h5>
+          <p class="card-text text-muted">
+            Próximamente podrás dejar tus opiniones, compartir tus lecturas  
+            y recomendar libros a otros amantes del conocimiento.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg rounded-4 h-100">
+        <div class="card-body">
+          <i class="bi bi-emoji-sunglasses fs-1 text-success"></i>
+          <h5 class="card-title mt-3 fw-bold">Lectura con estilo</h5>
+          <p class="card-text text-muted">
+            Porque leer no es aburrido: es la forma más elegante de viajar  
+            sin despegar los pies del suelo. ¡Hazlo con estilo BiblioPavini!
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Pie decorativo -->
+<div class="text-center mt-5 mb-4 text-muted">
+  <small><i class="bi bi-book"></i> Biblioteca Patrimonial San Ignacio — Proyecto BiblioPavini 2025</smal
+{% endblock %}

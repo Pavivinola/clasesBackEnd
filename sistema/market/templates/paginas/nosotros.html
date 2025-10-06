@@ -1,57 +1,75 @@
 {% extends "base.html" %}
 
-{% block titulo %} {% endblock %}
+{% block titulo %} Sección de Ejemplo {% endblock %}
 
-{% block contenido%} 
+{% block contenido %}
 
+<div class="container py-5">
+  <!-- FILA 1 -->
+  <div class="row align-items-md-stretch g-4 mb-4">
 
-
-<div class="row align-items-md-stretch">
+    <!-- Bloque oscuro -->
     <div class="col-md-6">
-        <div
-            class="h-100 p-5 text-white bg-dark border rounded-3"
-        >
-            <h2>Change the background</h2>
-            <p>
-                Swap the background-color utility and add a `.text-*` color
-                utility to mix up the jumbotron look. Then, mix and match with
-                additional component themes and more.
-            </p>
-            <button
-                class="btn btn-outline-primary"
-                type="button"
-            >
-                Example button
-            </button>
-        </div>
+      <div class="h-100 p-5 text-white bg-dark rounded-4 shadow-lg">
+        <h2><i class="bi bi-moon-stars"></i> Explorando nuevas lecturas</h2>
+        <p class="text-light-emphasis">
+          Cambia el fondo, juega con los colores y dale un nuevo estilo a tus secciones.
+          Cada historia tiene su tono… ¡elige el tuyo!
+        </p>
+        <a href="{% url 'nosotros' %}" class="btn btn-outline-light mt-2">
+          <i class="bi bi-arrow-right-circle"></i> Descubrir más
+        </a>
+      </div>
     </div>
+
+    <!-- Bloque verde -->
     <div class="col-md-6">
-        <div
-            class="h-100 p-5 bg-success border rounded-3"
-        >
-            <h2>Add borders</h2>
-            <p>
-                Or, keep it light and add a border for some added definition
-                to the boundaries of your content. Be sure to look under the
-                hood at the source HTML here as we've adjusted the alignment and
-                sizing of both column's content for equal-height.
-            </p>
-            <button
-                class="btn Swap the background-color utility and add a `.text-*` color
-                utility to mix up the jumbotron look. Then, mix and match with
-                additional component themes and more."
-                type="button"
-            >
-                Example button
-            </button>
-        </div>
+      <div class="h-100 p-5 bg-success bg-gradient text-white rounded-4 shadow-lg">
+        <h2><i class="bi bi-brightness-high"></i> Conéctate con la lectura</h2>
+        <p>
+          No todo son códigos y pantallas — a veces, un buen libro es el mejor algoritmo
+          para descansar la mente. 💚📖
+        </p>
+        <a href="{% url 'market' %}" class="btn btn-light mt-2 fw-semibold shadow-sm">
+          <i class="bi bi-journal-bookmark"></i> Ir a la Biblioteca
+        </a>
+      </div>
     </div>
-</div> 
+  </div>
 
+  <!-- FILA 2 -->
+  <div class="row align-items-md-stretch g-4">
 
+    <!-- Bloque historia / fundación -->
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-primary text-white rounded-4 shadow-lg">
+        <h2><i class="bi bi-hourglass-split"></i> Un viaje que empezó con polvo y sueños</h2>
+        <p>
+          La Biblioteca San Ignacio nació entre estanterías antiguas y la pasión por preservar la historia.
+          Lo que empezó con unos pocos tomos empolvados hoy es un refugio de saberes, curiosidades y buen café ☕📚.
+        </p>
+        <a href="{% url 'inicio' %}" class="btn btn-light mt-2 fw-semibold shadow-sm">
+          <i class="bi bi-bookmark-heart"></i> Conocer nuestra historia
+        </a>
+      </div>
+    </div>
 
+    <!-- Bloque misión / visión -->
+    <div class="col-md-6">
+      <div class="h-100 p-5 bg-warning bg-gradient text-dark rounded-4 shadow-lg">
+        <h2><i class="bi bi-eye"></i> Nuestra misión y visión</h2>
+        <p>
+          Creemos que leer no es solo pasar páginas: es encender mentes.
+          Nuestra misión es acercar el conocimiento a todos, y nuestra visión es simple:
+          que nadie se quede sin su historia favorita. 🌟
+        </p>
+        <a href="{% url 'nosotros' %}" class="btn btn-dark mt-2 fw-semibold shadow-sm">
+          <i class="bi bi-rocket-takeoff"></i> Leer más
+        </a>
+      </div>
+    </div>
 
+  </div>
+</div>
 
-
-
-{% endblock%}
+{% endblock %}

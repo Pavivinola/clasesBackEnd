@@ -1,0 +1,186 @@
+1 er comando es:
+python -m django startproject sistema
+
+2do cambiamos a la carpeta sistema
+si queremos correr  el server:
+python manage.py runserver
+
+si queremos crear una app, o nuevo proyecto:
+python manage.py startapp market
+
+luego sistema debe conocer a market:
+en el archivo settings.py se busca la linea 33 INSTALLED_APPS, ahí agregamos en la lista una linea que diga:
+
+'market',
+
+
+Luego volvemos en VSCODE a la carpeta market y buscamos views.py
+
+y ponemos
+
+from django.http import HttpResponse
+
+
+luego creamos la función para un saludo 
+def inicio(request):
+    return HttpResponse("<h1> Hollaaaa </h1>")
+
+ahora customizamos con el archivo urls.py
+se crea en market
+aquí importamos el path y los views
+from django.urls import path
+from . import views
+
+luego se crea la variable urlpatterns con las cosas que vamos a importar:
+urlpatterns = [
+    path('', views.inicio, name = 'inicio')
+]
+
+
+views es como el controlador en el MVC, en views creamos el método para customizar, sitema debe conocer las urls de market, entonces vamos al archivo urls.py de sistema y le ponemos:
+path('', include('market.urls')),
+
+
+todo el archivo queda asi:
+
+
+from django.contrib import admin
+from django.urls import path
+from django.urls import include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('market.urls')),
+    
+]
+isntalamos estas exrenciones en vscode:
+bootstrap 5 quick snippets
+GitHub copilot
+
+clase2
+bs5 jumbotron-fluid
+
+tenemos que poner otra pagina a la altura de paginas
+crearemos el archivo inicio.html
+
+a ese archivo le copiaremos lo mismo de nosotros.html pero le borraremos el contenido
+luego entre esto
+{% block contenido %} {% endblock%}
+ponemos bs5 jumbotron-fluid
+
+
+hay que crear una carpeta llamada template, django automáticamente la reconoce, ahí irán todos los htmls django
+luego creamos un HTML nosotros.html
+
+luego en urls.py de market agregamos esto:
+path('nosotros', views.nosotros, name = 'nosotros')
+
+ahora creamos otra carpeta dentro de templates ase puede llamar paginas dentro creamos el mismo archivo nosotros.html
+
+se puede usar en HTML el bs5 $ = para crear la base HTML
+y bs5 navbar minimal-a entremedio del <main>
+
+y creamos los enlaces a las otras paginas:
+<nav class="navbar navbar-expand navbar-light bg-light">
+                <div class="nav navbar-nav">
+                    <!-- <a class="nav-item nav-link active" href="#" aria-current="page"  -->
+                     
+                    <a class="nav-item nav-link active" href="#">Inicio</a>
+                    <a class="nav-item nav-link active" href="#">Market</a>
+                    <a class="nav-item nav-link active" href="#">Nosotros</a>
+                    
+                </div>
+            </nav>
+
+luego arriba del archivo antes de doctype debe ir esto para que sea estático:
+
+{% load static %}
+
+
+luego dentro del mismo div se pone una linea que agregará el contenido dinamico:
+
+{%block contenido%} {% endblock %}
+
+para los htmls que darán el contenido se agrega eso al inicio:
+{% extends "base.html" %}
+
+antes hay que agregar esto en el archivo base.html:
+
+  <head>
+        <title>{% {% block blockname %} {% endblock blockname %}}</title>
+
+luego en el archivo HTML nosotros.html ponemos solo esto:
+{% extends "base.html" %}
+
+{% block titulo %} {% endblock %}
+
+{% block contenido%} Seccion Nosostros {% endblock%}
+
+
+****/**hay varios bs5 commands útiles:
+bs5card-foot
+bs5table-default
+
+entre otros
+
+
+
+
+
+
+
+
+
+
+
+si vamos a /admin
+aparece un inicio de sesión, debemos crear el usuario y la clave
+
+ahora en el cmd detenemos el servidor
+luego ponemos python manage.py migrate
+
+y después python manage.py createsuperuser y creamos el usuario
+
+reiniciamos el servidor con Python manage.py runserver
+
+y nos logeamos
+
+luego en la carpeta market creamos el archivo crear.html
+
+
+luego vamos a models.py a la altura de market y creamos la clase Producto o Libros o lo que sea
+
+
+ahora le decimos al archivo admin que conozca la clase
+
+
+volver a hacer migrate makemigrations
+
+y ya esta la tabla creada
+
+eso lo vemos en dbBrowser for SQLlite
+
+
+
+
+podemos poner un botón por el header bs5-button-a
+
+luego 
+
+
+
+si queremos agregar campos nuevos o columnas al market tenemos que ir a index y ahí aparece esto:
+<table
+        class="table table-primary"
+    >
+        <thead>
+            <tr>
+                <th scope="col">Titulo </th>
+                <th scope="col">Autor </th>
+                <th scope="col">Materia </th>
+                <th scope="col">Precio </th>
+                <th scope="col">Stock </th>
+                <th scope="col">Acciones </th>
+
+si creamos un botón eliminar hay que ir a hacer el botón en el index y luego el método eliminar que debería estar en views
+luego, agregamos el path

@@ -1,90 +1,99 @@
-{% extends "base.html" %}
+{% extends "base.html" %} <!-- Esto es para heredar de base.html -->
 
-{% block titulo %} {% endblock %}
+{% block titulo %} Catálogo de Libros {% endblock %} <!-- Esto es el título de la página-->
 
-{% block contenido%} 
+{% block contenido %} <!-- Aquí va el contenido específico de la página -->
 
-{% comment %} El bloque de abajo es para mostrar mensajes a los usuarios {% endcomment %}
-{% if messages %} 
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">
-      {{ message }}
+<!-- Mensajes Flash -->
+{% if messages %} <!--Este bloque es para mostrar mensajes flash-->
+  {% for message in messages %} 
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-3" role="alert">
+      <i class="bi bi-info-circle"></i> {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   {% endfor %}
 {% endif %}
 
+<!-- Contenedor principal -->
+<div class="container mt-4">
 
+  <!-- Tarjeta principal -->
+  <div class="card shadow-lg border-0 rounded-3">
 
-<div class="card">
-    <div class="card-header">
-        <a
-            name=""
-            id=""
-            class="btn btn-success"
-            href="{% url 'crear' %}"
-            role="button"
-            >Agregar Libro</a
-        >
-        
-
-
+    <!-- Header -->
+    <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+      <h5 class="mb-0"><i class="bi bi-book-half me-2"></i> Gestión de Libros</h5>
+      <a class="btn btn-light btn-sm fw-semibold shadow-sm" href="{% url 'crear' %}">
+        <i class="bi bi-plus-circle"></i> Agregar Libro
+      </a>
     </div>
-    <div class="card-body">
-        <h4 class="card-title">Libros disponibles</h4>
-        <div
-    class="table-responsive"
->
-    <table
-        class="table table-primary"
-    >
-        <thead>
+
+    <!-- Body -->
+    <div class="card-body bg-light"> <!-- Esto es para darle un fondo clarito a la tarjeta -->
+      <h4 class="card-title text-center text-secondary mb-4"> <!--Esta clase es para centrar el título-->
+        <i class="bi bi-collection"></i> Libros Disponibles <!--Esto es el título de la tabla con todo el style-->
+      </h4>
+
+      <div class="table-responsive"> <!--Esto es para crear la tabla y que sea responsiva -->
+        <table class="table table-hover align-middle table-bordered shadow-sm"> <!--Esto es para darle todo el style a la tabla-->
+          <thead class="table-success text-center">
             <tr>
-                <th scope="col">ID </th>
-                <th scope="col">Titulo </th>
-                <th scope="col">Autor </th>
-                <th scope="col">Materia </th>
-                <th scope="col">Descripción </th>
-                <th scope="col">Precio </th>
-                <th scope="col">Stock </th>
-                <th scope="col">Acciones </th>
+              <th>ID</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Materia</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
             </tr>
-        </thead>
-        <tbody>
-            {% for market in market %}
-            <tr class="">
-                <td> {{market.id}} </td>
-                <td> {{market.titulo}} </td>
-                <td> {{market.autor}} </td>
-                <td> {{market.materia}} </td>
-                <td> {{market.descripcion}} </td>
-                <td> {{market.precio}} </td>
-                <td> {{market.stock}} </td>
-                <td> <a
-                    name=""
-                    id=""
-                    class="btn btn-danger"
-                    href="{% url 'eliminar' market.id %}"
-                    role="button"
-                    >Eliminar</a>
-                    <a
-                        name=""
-                        id=""
-                        class="btn btn-primary"
-                        href="{% url 'prestar' market.id %}"
-                        role="button"
-                        >Prestar</a
-                    >
-                    
+          </thead>
+          <tbody class="text-center">
+            {% for market in market %} <!-- Esto es para iterar sobre los campos del modelo -->
+              <tr>
+                <td>{{ market.id }}</td>
+                <td class="fw-semibold">{{ market.titulo }}</td>
+                <td>{{ market.autor }}</td>
+                <td>{{ market.materia }}</td>
+                <td class="text-muted text-start" title="{{ market.descripcion }}">{{ market.descripcion|truncatechars:80 }}
+                {% comment %} <td class="text-muted text-start">{{ market.descripcion }}</td> {% endcomment %}
+                {% comment %} <td class="text-muted">{{ market.descripcion|truncatechars:50 }}</td> {% endcomment %}
+                <td>${{ market.precio }}</td>
+                <td>
+                  {% if market.stock > 0 %}
+                    <span class="badge bg-success">{{ market.stock }}</span>
+                  {% else %}
+                    <span class="badge bg-danger">Agotado</span>
+                  {% endif %}
                 </td>
-
-            </tr>
-            {%  endfor %} 
-     
-        </tbody>
-    </table>
-</div>    
+                <td>
+                  <div class="d-flex justify-content-center gap-2">
+                    <a class="btn btn-sm btn-primary" href="{% url 'prestar' market.id %}">
+                      <i class="bi bi-book"></i> Prestar
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="{% url 'eliminar' market.id %}">
+                      <i class="bi bi-trash"></i> Eliminar
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="8" class="text-center text-muted py-4">
+                  <i class="bi bi-emoji-frown"></i> No hay libros disponibles
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-    <div class="card-footer text-muted">Footer</div>
+
+    <!-- Footer -->
+    <div class="card-footer text-center text-muted">
+      <small><i class="bi bi-journal-bookmark"></i> BiblioPavini</small>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
